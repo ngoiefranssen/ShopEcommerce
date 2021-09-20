@@ -1,0 +1,34 @@
+[
+    {
+        "category_id":1,
+        "name": "MoteurXp",
+        "description": "Moteur tres puissant pour la 5ieme generation",
+        "prix":200000
+
+    },
+
+    {
+        "category_id":2,
+        "name": "IPhone 13",
+        "description": "Après un renouveau en 2020, que nous prépare le prochain millésime",
+        "prix":450
+
+    },
+
+    {
+        "category_id":1,
+        "name": "Montre",
+        "description": "montre électronique qui intègre des fonctions de communication élaborées : réception-émission d'appels téléphoniques",
+        "prix":250
+
+    },
+
+    {
+        "category_id":1,
+        "name": "CasqueXp bluetooth",
+        "description": "Un fan inconditionnel des écouteurs intra-auriculaires",
+        "prix":50
+
+    }
+
+]
