@@ -30,9 +30,12 @@ Route::post('/login', [LoginController::class, 'connexion']);
 
 Route::get('/register', [RegisterController::class, 'register_section'])->name('register');
 Route::post('/register', [RegisterController::class, 'save_user']);
+
 Route::post('logout', [LogoutController::class, 'logout'])->name('logout');
+
 Route::resource('products', ProductController::class);
 Route::resource('cart', CartController::class);
+
 Route::get('/orders/capture', function () {
     if (Session::has('cart')) {
         foreach (Session::get('cart') as $key => $cart) {
@@ -47,8 +50,14 @@ Route::get('/orders/capture', function () {
     return <<<EOF
     <div class="max-w-[30rem] mx-auto mt-12">
 
-        <div class="text-2xl">Merci d'avoir acheté nos produits. Vous pouvez vous diriger vers le <a class="italic underline" href="{{ route('products.catalogue') }}">catalogue</a> pour explorer d'autres chaussures.</div>
+        <div class="text-2xl">Merci d'avoir acheté nos produits. Vous pouvez vous diriger vers le <a class="italic underline" href="{{ route('products.index') }}">Products</a> pour explorer d'autres produits.</div>
 
    </div>
 EOF;
 })->name('orders.capture');
+
+Route::get('/search/{query}', [ProductController::class, 'search']);
+
+
+
+

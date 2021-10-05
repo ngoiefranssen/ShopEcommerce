@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Http\Requests;
+
 use Illuminate\Foundation\Http\FormRequest;
 
-class RegisterSaveRequest extends FormRequest
+class ProductSaveRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,14 +23,13 @@ class RegisterSaveRequest extends FormRequest
      */
     public function rules()
     {
-
+        return [
             //
-            return [
-                //
-                'nom' => ['required', 'max:30'],
-                'email' => ['required', 'email', 'unique:users'],
-                'password' => ['required', 'confirmed', 'min:8']
-            ];
-
+            'nom' => ['required'],
+            'prix' => ['required'],
+            'description' => ['required'],
+            'category_id' => ['required'],
+            'image_url' => ['image', 'mimes:png,jpg,jpeg,svg']
+        ];
     }
 }

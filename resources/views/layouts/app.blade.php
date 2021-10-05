@@ -12,6 +12,10 @@
 
 <body>
 
+ <div x-data="searchbar">
+
+    @yield('searchbar')
+
     <header class="text-gray-600 body-font">
         <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
             <a class="flex title-font font-medium items-center text-gray-900 mb-4 md:mb-0">
@@ -23,24 +27,19 @@
                 <span href="/" class="ml-3 text-xl">XShop</span>
             </a>
 
-            <div class=" ml-14 flex border-2 rounded">
-                <button class="flex items-center justify-center px-4 border-r">
-                    <svg class="w-6 h-6 text-gray-600" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 24 24">
-                        <path
-                            d="M16.32 14.9l5.39 5.4a1 1 0 0 1-1.42 1.4l-5.38-5.38a8 8 0 1 1 1.41-1.41zM10 16a6 6 0 1 0 0-12 6 6 0 0 0 0 12z">
-                        </path>
-                    </svg>
-                </button>
-                <input type="text" class="px-3 py-2 w-80" placeholder="Search...">
-            </div>
+            <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center ">
 
-            <nav class="md:ml-auto flex flex-wrap items-center text-base justify-center">
-                <a href="/" class="ml-4 hover:text-gray-900">Accueil</a>
+                @if(url()->current() === "http://127.0.0.1:8000/products")
+
+                <a href="#" @click="show" class="p-2 lg:px-4 md:mx-2 text-white rounded bg-indigo-500"><i class="fa fa-search"></i></a>
+
+                 @endif
+
+                <a href="/" class="ml-4 hover:text-gray-900 px-5 py-5">Accueil</a>
                 <a href="{{ route('products.index') }}" class="ml-4 hover:text-gray-900">Products</a>
                 <a href="{{ route('cart.index') }}" class="ml-4 hover:text-gray-900"><i
-                        class="fa fa-shopping-cart"></i></a>
-                <a href="#" class="ml-4 hover:text-gray-900"><i class="fa fa-address-book"></i></a>
+                        class="fa fa-shopping-cart px-5 py-5"></i></a>
+                <!--a href="#" class="ml-4 hover:text-gray-900"><i class="fa fa-address-book"></i></a-->
 
                 @guest
                     <a href="{{ route('login') }}" class="ml-4 hover:text-gray-900">Login</a></li>
@@ -53,7 +52,7 @@
                         {{ Auth::user()->name }}
                     </div>
 
-                    <form action="{{ route('logout') }}" method="POST">
+                    <form action="{{ route('logout') }}" method="POST" class="ml-4">
                         @csrf
                         <a href="{{ route('logout') }}" type="submit"
                             onclick="event.preventDefault(); this.closest('form').submit();">logout</a>
@@ -61,7 +60,7 @@
                 @endauth
 
             </nav>
-        </div>
+             </div>
     </header>
 
     <main class="container mx-auto">
@@ -71,8 +70,33 @@
     </main>
 
 
+    <!--section class="text-gray-600 body-font">
+        <div class="container px-5 py-24 mx-auto flex flex-wrap items-center">
+          <div class="lg:w-3/5 md:w-1/2 md:pr-16 lg:pr-0 pr-0">
+            <h1 class="title-font font-medium text-3xl text-gray-900">Slow-carb next level shoindcgoitch ethical authentic, poko scenester</h1>
+            <p class="leading-relaxed mt-4">Poke slow-carb mixtape knausgaard, typewriter street art gentrify hammock starladder roathse. Craies vegan tousled etsy austin.</p>
+          </div>
+          <div class="lg:w-2/6 md:w-1/2 bg-gray-100 rounded-lg p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0">
+            <div class="relative mb-4">
+              <label for="email" class="leading-7 text-sm text-gray-600">Email</label>
+              <input type="email" id="email" name="email" class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+            </div>
+            <div class="relative">
+                <label for="message" class="font-medium text-gray-900">Commentaire</label>
+                <textarea id="message" name="description" class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 h-32 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"></textarea>
+            </div>
+            <br>
+            <button class="text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">Button</button>
+            <p class="text-xs text-gray-500 mt-3">Literally you probably haven't heard of them jean shorts.</p>
+
+        </div>
+
+        </div>
+      </!--section*-->
+
 
     <footer class="text-gray-600 body-font">
+
         <div class="container px-5 py-8 mx-auto flex items-center sm:flex-row flex-col">
             <a class="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round"
@@ -85,8 +109,13 @@
             <p class="text-sm text-gray-500 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4"
                 href="/">© 2021 XShop —
                 <a href="https://twitter.com/ngoiefranssen" class="text-gray-600 ml-1" rel="noopener noreferrer"
-                    target="_blank">@ngoiefranssen</a>
+                    target="_blank">@franssen</a>
             </p>
+            <p class="text-sm text-gray-500 sm:ml-4 sm:pl-4 sm:border-l-2 sm:border-gray-200 sm:py-2 sm:mt-0 mt-4"
+            href="/">© 2021 XShop —
+            <a href="https://m.facebook.com/?_rdr" class="text-gray-600 ml-1" rel="noopener noreferrer"
+                target="_blank">@Buntu</a>
+        </p>
             <span class="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
                 <a class="text-gray-500">
                     <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -119,10 +148,10 @@
                     </svg>
                 </a>
             </span>
-        </div>
-    </footer>
 
-    <script src="js/app.js"></script>
+    </footer>
+</div>
+     <script src="js/app.js"></script>
 </body>
 
 </html>

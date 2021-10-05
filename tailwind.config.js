@@ -1,4 +1,7 @@
 module.exports = {
+
+   mode: 'jit',
+
     purge: [
         './resources/**/*.blade.php',
         './resources/**/*.js',
@@ -9,7 +12,9 @@ module.exports = {
     extend: {},
   },
   variants: {
-    extend: {},
+    extend: {
+        transitionProperty: ['responsive', 'motion-safe', 'motion-reduce']
+    },
   },
   plugins: [],
 }

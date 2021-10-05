@@ -52,9 +52,9 @@
                                         <tr>
                                             <td class="px-6 py-4 whitespace-nowrap">
                                                 <div class="flex items-center">
-                                                    <div class="flex-shrink-0 h-10 w-10">
-                                                        <img class="flex-shrink-2 mb-4 rounded-none w-full h-full"
-                                                            src="{{ asset('images/' . $product['image_url']) }}" alt="">
+                                                    <div class=" ">
+                                                        <img width="90px" height="90px" class="flex-shrink-2 mb-4 rounded-none w-full h-full"
+                                                            src="{{ asset('storage/' . $product['image_url']) }}" alt="">
                                                     </div>
                                                     <div class="ml-4">
                                                         <div class="text-sm font-medium text-gray-900">
@@ -275,9 +275,13 @@
             },
 
             onApprove: function(data, actions) {
+
                 // This function captures the funds from the transaction.
-                return actions.order.capture().then(function(details) {
+
+                return actions.order.capture().then(function(details)
+                {
                     // This function shows a transaction success message to your buyer.
+
                     window.location.replace("{{ route('orders.capture') }}")
 
                 });

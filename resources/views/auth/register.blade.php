@@ -55,7 +55,7 @@
        </form>
         <div class="text-grey-dark mt-6">
             connectez-vous si vous avez un compte!
-            <a class="no-underline border-b border-blue text-blue" href="{{ route('login') }}">Log in</a>
+            <a class="text-red-500 " href="{{ route('login') }}">Log in</a>
         </div>
     </div>
 </div>

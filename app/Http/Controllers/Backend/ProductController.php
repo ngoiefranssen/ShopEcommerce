@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use App\Http\Requests\ProductSaveRequest;
 
 class ProductController extends Controller
 {
@@ -14,12 +15,21 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+     public function __construct()
+     {
+         $this->middleware('auth');
+
+     }
+
     public function index()
     {
 
         $products = Product::latest()->paginate(12);
 
         return view('products.index', compact('products'));
+
+      // dd(Product::latest()->get());
     }
 
     /**
@@ -30,8 +40,9 @@ class ProductController extends Controller
     public function create()
     {
         //
+        $this->authorize('add-product');
 
-        $Categories = Category::all();
+        $categories = Category::all();
         return view('products.create', compact('categories'));
     }
 
@@ -41,9 +52,10 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProductSaveRequest $request)
     {
         //
+        $this->authorize('add-product');
 
         $products_received=
         [
@@ -54,8 +66,12 @@ class ProductController extends Controller
 
         ];
 
+       // dd($products_received);
+
+
         $product_created = Product::create($products_received);
-        $this->isImageProduct($product_created);
+
+        $this->isImagePresent($product_created);
 
         return redirect()->route('products.index')->with('success', 'product  created successfully');
     }
@@ -103,5 +119,22 @@ class ProductController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function search(string $query)
+    {
+        return  Product::search($query)->get();
+
+    }
+
+    public function isImagePresent(Product $product)
+    {
+        if(request('image_url'))
+        {
+            $product->update([
+
+                'image_url' => request('image_url')->store('products', 'public')
+            ]);
+        }
     }
 }

@@ -8,15 +8,17 @@
     @csrf
     @method('post')
 
-<section class="text-gray-600 body-font">
-    <div class="container px-5 py-24 mx-auto flex flex-wrap items-center">
-      <div class="lg:w-2/6 md:w-1/2 bg-gray-100 rounded-lg p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0">
+<section class="text-gray-600 body-font rounded-lg p-8 py-10">
+    <div class=" container-center px-5 py-24 mx-auto flex flex-center items-center">
+      <div class="lg:w-2/6 md:w-1/2 bg-gray-100 rounded-lg p-10  flex flex-col md:ml-auto w-full mt-10 md:mt-0">
+
         @if (session('error'))
 
         <div class="rounded-lg p-2 text-center w-full mb-2 text-white bg-red-500 mx-0">{{ session('error') }}</div>
 
-    @endif
+       @endif
         <div class="relative mb-4">
+
           <!--label for="email" class="leading-7 text-sm text-gray-600">Email</!--label-->
           <input type="text" id="email" name="email" placeholder="@email" class="w-full bg-white rounded border border-gray-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
         </div>
@@ -32,4 +34,5 @@
   <p class="text-center">Veillez créer un compte? <a class="text-" href="{{ route('register') }}">Créer un compte</a></p>
 
 </form>
+
 @endsection
