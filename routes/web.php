@@ -37,6 +37,7 @@ Route::resource('products', ProductController::class);
 Route::resource('cart', CartController::class);
 
 Route::get('/orders/capture', function () {
+
     if (Session::has('cart')) {
         foreach (Session::get('cart') as $key => $cart) {
             Product::find($cart['id'])->update([
@@ -47,13 +48,7 @@ Route::get('/orders/capture', function () {
 
     Session::flush();
 
-    return <<<EOF
-    <div class="max-w-[30rem] mx-auto mt-12">
-
-        <div class="text-2xl">Merci d'avoir acheté nos produits. Vous pouvez vous diriger vers le <a class="italic underline" href="{{ route('products.catalogue') }}">catalogue</a> pour explorer d'autres produits.</div>
-
-   </div>
-EOF;
+    return view('products.orders.capture');
 })->name('orders.capture');
 
 Route::get('/search/{query}', [ProductController::class, 'search']);

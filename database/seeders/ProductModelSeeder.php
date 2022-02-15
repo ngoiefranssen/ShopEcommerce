@@ -14,5 +14,7 @@ class ProductModelSeeder extends Seeder
     public function run()
     {
         //
+
+
     }
 }

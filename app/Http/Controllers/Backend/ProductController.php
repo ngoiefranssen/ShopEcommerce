@@ -25,7 +25,7 @@ class ProductController extends Controller
     public function index()
     {
 
-        $products = Product::latest()->paginate(12);
+        $products = Product::paginate(12);
 
         return view('products.index', compact('products'));
 
@@ -133,7 +133,7 @@ class ProductController extends Controller
         {
             $product->update([
 
-                'image_url' => request('image_url')->store('products', 'public')
+                'image_url' => request('image_url')->store('img', 'public')
             ]);
         }
     }

@@ -79,10 +79,12 @@
 
                                                     <select @change="$refs.formqty.submit()"
                                                         class="py-1 text-xs focus:outline-none" name="quantity" id="">
+
                                                         @foreach (range(1, $product['quantity']) as $qty)
                                                             <option {{ $qty == $product['qty_panier'] ? 'selected' : '' }}
                                                                 value="{{ $qty }}">{{ $qty }}</option>
                                                         @endforeach
+
                                                     </select>
                                                 </form>
 
@@ -268,7 +270,7 @@
                 return actions.order.create({
                     purchase_units: [{
                         amount: {
-                            value: "{{ Session::get('cart') && array_reduce(Session::get('cart'), fn($c, $i) => $c + $i['prix'] * $i['qty_panier']) }}"
+                            value: {{ array_reduce(Session::get('cart'), fn($c, $i) => $c + $i['prix'] * $i['qty_panier']) }}
                         }
                     }]
                 });

@@ -17,14 +17,15 @@
      @endsection
 
 
-     <section class=" text-gray-600 body-font my-3">
-         <div class="my-12">
-            @can('add-product')
-            <a href=" {{ route('products.create') }}"
-                class="bg-blue-500 hover:bg-blue-700 ml-5 text-white font-bold py-2 px-4 rounded">Ajouter un
-                produit</a>
-        @endcan
-         </div>
+     <section class="
+                            text-gray-600 body-font my-3">
+                            <div class="my-12">
+                                @can('add-product')
+                                    <a href=" {{ route('products.create') }}"
+                                        class="bg-blue-500 hover:bg-blue-700 ml-5 text-white font-bold py-2 px-4 rounded">Ajouter
+                                        un produit</a>
+                                @endcan
+                            </div>
                             <div class="container px-5 py-24 mx-auto">
                                 <div class="flex flex-wrap -m-5">
                                     @foreach ($products as $product)
@@ -71,10 +72,11 @@
                             {{ $products->links() }}
 
     </section>
+
 @endsection
 
 <a><img alt="ecommerce" class="object-cover object-center w-full h-full block"
-        src="{{ asset('images/' . $product->image_url) }}"></a>
+        src="{{ asset('images/' .$product->image_url) }}"></a>
 <div class="mt-4">
     <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1"> {{ $product->category->name }}</h3>
     <h2 class="text-gray-900 title-font text-lg font-medium">{{ $product->nom }}</h2>

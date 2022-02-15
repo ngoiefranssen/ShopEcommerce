@@ -11,12 +11,12 @@
             <ul class="h-auto p-6 -mt-2 overflow-auto bg-white">
                 <template x-for="(product, i) in results" :key="i">
                     <li class="flex mb-6">
-                        <img class="object-cover w-2/6 h-24 rounded-sm shadow-sm" :src="`/storage/${product.image_url}`" :alt="product.nom">
+                        <img class="object-cover w-2/6 h-24 rounded-sm shadow-sm" :src="`storage/${product.image_url}`" :alt="product.nom">
 
                         <div class="ml-2">
                             <h4 class="text-xl text-gray-800" x-text="`${product.description.substr(0, 20)}...`"></h4>
                             <div>&dollar; <span class="font-bold" x-text="product.prix"></span></div>
-                            <a href="{{ route('products.show', $product->id) }}" class="underline">En voir plus</a>
+                            <a :href="`/products/${product.id}`" class="underline text-blue-500">En voir plus</a>
 
                         </div>
                     </li>

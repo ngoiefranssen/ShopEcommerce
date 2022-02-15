@@ -10,7 +10,7 @@
 </head>
 <body>
     <div id="cart">
-        <a href="/">XShop</a>
+        {{-- <a href="/">XShop</a> --}}
     </div>
     <main>
         <div class="container">
