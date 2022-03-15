@@ -24,7 +24,7 @@ class LoginController extends Controller
         ]);
 
       if (! Auth::attempt($request->only(['email', 'password']))){
-        return back()->with('error', 'Email ou mot de passe incorrect');
+        return back()->with(' error ', ' Email ou mot de passe incorrect ');
 
       };
 
